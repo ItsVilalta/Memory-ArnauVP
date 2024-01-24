@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#tempo {
+    animation: zoom 1s infinite alternate;
+    font-size: 16px;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.3);
+    }
+}
+
+.tremolor {
+    animation: tremolor 0.5s infinite;
+}
+
+@keyframes tremolor {
+    0% { transform: translate(0); }
+    25% { transform: translate(3px, 3px); }
+    50% { transform: translate(0, 6px); }
+    75% { transform: translate(-3px, 3px); }
+    100% { transform: translate(0); }
+}
+
+
+#tauler {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    width: 600px;
+    place-items: center;
+    /* background-color: hsl(270, 100%, 20%); */
+    background-color: #fae1c0;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.carta {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: red;
+    background-color: hsl(270, 60%, 94%);
+    z-index: 1;
+    animation: fadeIn 4s ease 1;
+
+    -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.81);
+    -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.81);
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.81);
+
+}
+
+.carta-desabilitat{
+        /* display: none; */
+        pointer-events: none;
+        cursor: not-allowed;
+}
+
+img {
+    max-width: 80%;
+    animation: fadeIn 3s ease 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.destapada {
+    overflow: hidden;
+}
+
+.destapada::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #332d27;
+    z-index: 0;
+    animation: cortinaEsquerraObrir 0.5s ease-in;
+}
+
+@keyframes cortinaEsquerraObrir {
+    0% {
+        width: 50%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+
+.destapada::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    background-color: #332d27;
+    z-index: 0;
+    animation: cortinaDretaObrir 0.5s ease-in;
+
+}
+
+@keyframes cortinaDretaObrir {
+    0% {
+        width: 50%;
+        left: 50%;
+    }
+
+    100% {
+        width: 50%;
+        left: 100%;
+        display: none;
+    }
+}
+
+.tapada {
+    position: relative;
+    transition: 0.5s;
+    overflow: hidden;
+    -webkit-text-fill-color: transparent;
+}
+
+.tapada::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 50%;
+    height: 100%;
+    background-color: #332d27;
+    z-index: 2;
+    animation: cortinaEsquerra 0.5s;
+}
+
+@keyframes cortinaEsquerra {
+    from {
+        width: 0%;
+
+    }
+
+    to {
+        width: 50%;
+    }
+}
+
+.tapada::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: #332d27;
+    z-index: 2;
+    animation: cortinaDreta 0.5s;
+}
+
+@keyframes cortinaDreta {
+    from {
+        left: 100%;
+        width: 0%;
+    }
+
+    to {
+        left: 50%;
+        width: 50%;
+    }
+}
+
+.contenidor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border-radius: 24px;
+
+
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.desabilitat {
+    /* display: none; */
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#parar {
+    background-color: red;
+}
